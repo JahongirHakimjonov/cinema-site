@@ -14,6 +14,7 @@ from apps.hidaya.views import (
     VideoCategoryList,
     VideoList,
     VideoDetail,
+    GetSignedVideoURLView,
 )
 
 urlpatterns = [
@@ -30,4 +31,9 @@ urlpatterns = [
     path("category/book/", BookCategoryList.as_view(), name="category-book-list"),
     path("category/news/", NewsCategoryList.as_view(), name="category-news-list"),
     path("category/video/", VideoCategoryList.as_view(), name="category-video-list"),
+    path(
+        "videos/<int:video_id>/<str:quality>/<str:file_name>/signed-url/",
+        GetSignedVideoURLView.as_view(),
+        name="get_signed_video_url",
+    ),
 ]

@@ -43,16 +43,20 @@ class BookDetailSerializer(serializers.ModelSerializer):
 
     def get_category(self, obj):
         from apps.hidaya.serializers import BookCategorySerializer
+
         return BookCategorySerializer(obj.category).data
 
     def get_genre(self, obj):
         from apps.hidaya.serializers import GenreSerializer
+
         return GenreSerializer(obj.genre, many=True).data
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        user = self.context['request'].user
-        order = Order.objects.filter(user=user, book=instance, payment_status=True).exists()
-        representation['is_purchased'] = order
+        user = self.context["request"].user
+        order = Order.objects.filter(
+            user=user, book=instance, payment_status=True
+        ).exists()
+        representation["is_purchased"] = order
         if order:
-            representation['original_file'] = instance.original_file.url
+            representation["original_file"] = instance.original_file.url

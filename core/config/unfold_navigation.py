@@ -45,6 +45,14 @@ PAGES = [
                 ),
             },
             {
+                "title": _("Aktiv sesiyalar"),
+                "icon": "visibility_lock",
+                "link": reverse_lazy("admin:users_activesessions_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_activesessions"
+                ),
+            },
+            {
                 "title": _("SMS kodlar"),
                 "icon": "sms",
                 "link": reverse_lazy("admin:users_smsconfirm_changelist"),
@@ -110,6 +118,20 @@ PAGES = [
                 "link": reverse_lazy("admin:payme_paymetransactions_changelist"),
                 "permission": lambda request: user_has_group_or_permission(
                     request.user, "view_paymetransactions"
+                ),
+            },
+        ],
+    },
+    {
+        "seperator": True,
+        "title": _("Qo'shimcha"),
+        "items": [
+            {
+                "title": _("Bildirishnomalar"),
+                "icon": "notifications",
+                "link": reverse_lazy("admin:hidaya_notification_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_notification"
                 ),
             },
         ],

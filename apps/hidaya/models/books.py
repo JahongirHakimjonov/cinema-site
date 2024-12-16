@@ -41,7 +41,10 @@ class Book(AbstractBaseModel):
     is_active = models.BooleanField(default=True, verbose_name=_("Is Active"))
     file = models.FileField(upload_to="books", verbose_name=_("File"))
     original_file = models.FileField(
-        upload_to="books/original", verbose_name=_("Original File"), blank=True, null=True
+        upload_to="books/original",
+        verbose_name=_("Original File"),
+        blank=True,
+        null=True,
     )
     sold_count = models.BigIntegerField(default=0, verbose_name=_("Sold Count"))
 

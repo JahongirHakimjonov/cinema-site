@@ -8,6 +8,6 @@ admin.site.unregister(Group)
 
 @admin.register(Group)
 class GroupAdmin(BaseGroupAdmin, ModelAdmin):
-    list_display = ("name",)
+    list_display = ("id", "name")
     search_fields = ("name",)
     filter_vertical = ("permissions",)

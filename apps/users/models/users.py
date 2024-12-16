@@ -73,3 +73,35 @@ class User(AbstractUser, AbstractBaseModel):
     def tokens(self):
         refresh = RefreshToken.for_user(self)
         return {"refresh": str(refresh), "access": str(refresh.access_token)}
+
+
+class ActiveSessions(AbstractBaseModel):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="sessions", verbose_name=_("User")
+    )
+    ip = models.GenericIPAddressField(db_index=True, verbose_name=_("IP address"))
+    user_agent = models.TextField(verbose_name=_("User agent"), db_index=True)
+    location = models.JSONField(verbose_name=_("Location"), null=True, blank=True)
+    last_activity = models.DateTimeField(
+        auto_now=True, verbose_name=_("Last activity"), db_index=True
+    )
+    fcm_token = models.CharField(
+        max_length=255,
+        verbose_name=_("FCM token"),
+        null=True,
+        blank=True,
+        db_index=True,
+    )
+    refresh_token = models.TextField(verbose_name=_("Refresh token"), db_index=True)
+    access_token = models.TextField(verbose_name=_("Access token"), db_index=True)
+    is_active = models.BooleanField(default=True, verbose_name=_("Is active"))
+    data = models.JSONField(verbose_name=_("Data"), null=True, blank=True)
+
+    class Meta:
+        verbose_name = _("Active session")
+        verbose_name_plural = _("Active sessions")
+        db_table = "active_sessions"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user.username} {self.ip}" if self.user else str(_("Session"))

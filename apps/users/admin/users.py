@@ -6,7 +6,7 @@ from unfold.admin import ModelAdmin
 from unfold.decorators import display
 from unfold.forms import AdminPasswordChangeForm, UserCreationForm, UserChangeForm
 
-from apps.users.models import User, RoleChoices
+from apps.users.models import User, RoleChoices, ActiveSessions
 
 
 @admin.register(User)
@@ -84,3 +84,26 @@ class UserAdmin(BaseUserAdmin, ModelAdmin):
                 "height": 50,
             },
         ]
+
+
+@admin.register(ActiveSessions)
+class ActiveSessionsAdmin(ModelAdmin):
+    list_display = ["id", "user", "ip", "user_agent", "last_activity"]
+    autocomplete_fields = ["user"]
+    search_fields = ["user__first_name", "user__last_name", "ip"]
+    readonly_fields = [
+        "user",
+        "is_active",
+        "ip",
+        "user_agent",
+        "last_activity",
+        "location",
+        "fcm_token",
+        "refresh_token",
+        "access_token",
+        "created_at",
+        "updated_at",
+        "data",
+    ]
+    list_filter = ["last_activity"]
+    list_per_page = 50

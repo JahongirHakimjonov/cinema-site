@@ -22,16 +22,18 @@ class OrderCreate(APIView):
         """
         Create a new order.
         """
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.serializer_class(
+            data=request.data, context={"request": request}
+        )
         serializer.is_valid(raise_exception=True)
-        serializer.save(user=request.user)
+        serializer.save()
 
         result = {"order": serializer.data}
 
         if serializer.data["payment_method"] == PaymentMethodChoices.PAYME:
             payment_link = payme.initializer.generate_pay_link(
                 id=serializer.data["id"],
-                amount=serializer.data["total_price"],
+                amount=int(float(serializer.data["total_price"])),
                 return_url=settings.PAYME_SUCCESS_URL,
             )
             payment_link = payment_link.replace(

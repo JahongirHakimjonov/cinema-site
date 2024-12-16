@@ -10,6 +10,7 @@ admin.site.unregister(PaymeTransactions)
 @admin.register(PaymeTransactions)
 class PaymeTransactionsAdmin(ModelAdmin):
     list_display = (
+        "id",
         "transaction_id",
         "amount",
         "state",

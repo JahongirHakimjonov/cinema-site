@@ -34,6 +34,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "apps.shared.middlewares.url.SignedURLMiddleware",
+    "apps.shared.middlewares.sessions.CheckActiveSessionMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -102,11 +104,12 @@ LANGUAGES = (
     ("ru", _("Russia")),
     ("en", _("English")),
     ("uz", _("Uzbek")),
+    ("uz-Cyrl", _("Krill")),
 )
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
-MODELTRANSLATION_LANGUAGES = ("uz", "ru", "en")
+MODELTRANSLATION_LANGUAGES = ("uz", "ru", "en", "uz-Cyrl")
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = "uz"
 

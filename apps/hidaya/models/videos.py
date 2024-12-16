@@ -20,9 +20,14 @@ class Video(AbstractBaseModel):
     original_file = models.FileField(
         upload_to="videos/original", verbose_name=_("Original File")
     )
-    view_count = models.BigIntegerField(default=0, verbose_name=_("View Count"), editable=False)
+    view_count = models.BigIntegerField(
+        default=0, verbose_name=_("View Count"), editable=False
+    )
     hls_playlist = models.FileField(
-        upload_to="videos/hls_playlist", verbose_name=_("HLS Playlist"), null=True, blank=True
+        upload_to="videos/hls_playlist",
+        verbose_name=_("HLS Playlist"),
+        null=True,
+        blank=True,
     )
 
     def increment_views(self):

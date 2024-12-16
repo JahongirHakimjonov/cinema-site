@@ -45,7 +45,7 @@ class Order(AbstractBaseModel):
         verbose_name_plural = _("Orders")
         db_table = "order"
         ordering = ["-created_at"]
-        unique_together = ["book", "user", "format"]
+        # unique_together = ["book", "user", "format"]
 
     def __str__(self) -> str:
         return f"{self.book.title} - {self.user.username} - {self.format}"
