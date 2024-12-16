@@ -6,7 +6,7 @@ from shutil import which
 from celery import shared_task
 from django.conf import settings
 
-from apps.hidaya.models import Video
+from apps.hidaya.models import Video, Notification, NotificationType
 
 
 @shared_task
@@ -85,6 +85,19 @@ def process_video(video_id):
             video.original_file = None
             video.save()
             print(f"Original file for video {video_id} removed.")
+            Notification.objects.create(
+                title_uz="Yangi video qo'shildi",
+                title_ru="Добавлено новое видео",
+                title_en="New video added",
+                title_uz_Cyrl="Янги видео қўшилди",
+                message_uz=f"{video.title_uz}",
+                message_ru=f"{video.title_ru}",
+                message_en=f"{video.title_en}",
+                message_uz_Cyrl=f"{video.title_uz_Cyrl}",
+                banner=video.banner,
+                type=NotificationType.ALL,
+            )
+            print(f"Notification for video {video_id} created.")
 
     except Video.DoesNotExist:
         print(f"Video with id {video_id} does not exist.")
