@@ -196,3 +196,10 @@ CKEDITOR_5_CONFIGS = {
         }
     },
 }
+
+CKEDITOR_UPLOAD_PATH = "uploads/"  # Path to upload images
+CKEDITOR_IMAGE_BACKEND = "pillow"  # Use Pillow as image processing backend
+CKEDITOR_IMAGE_QUALITY = 100  # Image quality
+CKEDITOR_RESTRICT_BY_USER = True  # Restrict images by user
+CKEDITOR_BROWSE_SHOW_DIRS = True  # Show directories in file browser
+CKEDITOR_RESTRICT_BY_DATE = True  # Restrict images by date

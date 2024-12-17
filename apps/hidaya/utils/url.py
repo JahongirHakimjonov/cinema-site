@@ -15,10 +15,10 @@ def generate_signed_url(path, expiration=10):
     :param expiration: URL amal qilish vaqti (soniyalar)
     :return: Imzolangan URL
     """
-    expires_at = int(time.time()) + expiration  # Hozirgi vaqt + amal qilish muddati
-    message = f"{path}{expires_at}"  # Yo‘l va muddati birlashtiriladi
+    expires_at = int(time.time()) + expiration
+    message = f"{path}{expires_at}"
     signature = hmac.new(
         SECRET_KEY.encode(), message.encode(), hashlib.sha256
-    ).hexdigest()  # Imzo yaratiladi
+    ).hexdigest()
     signed_url = f"{path}?expires={expires_at}&signature={signature}"
     return signed_url
