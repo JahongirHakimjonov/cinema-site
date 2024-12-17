@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from apps.users.models import User
+from apps.users.models import User, ActiveSessions
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -46,3 +46,16 @@ class CustomTokenRefreshSerializer(serializers.Serializer):
 
 class BlockSessionSerializer(serializers.Serializer):
     session_id = serializers.IntegerField()
+
+
+class ActiveSessionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ActiveSessions
+        fields = (
+            "id",
+            "user",
+            "ip",
+            "user_agent",
+            "location",
+            "last_activity",
+        )

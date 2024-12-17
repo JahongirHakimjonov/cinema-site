@@ -19,6 +19,7 @@ from apps.users.views import (
     CustomTokenObtainPairView,
     CustomTokenRefreshView,
     BlockSessionView,
+    ListSessionView,
 )
 
 urlpatterns = [
@@ -35,6 +36,7 @@ urlpatterns = [
     path("auth/password/change/", ChangePasswordView.as_view(), name="change_password"),
     path("auth/user/delete/", DeleteAccountView.as_view(), name="delete-account"),
     path("auth/session/block/", BlockSessionView.as_view(), name="block_session"),
+    path("auth/session/list/", ListSessionView.as_view(), name="list_session"),
     path(
         "auth/password/reset/", SendPasswordResetView.as_view(), name="reset-password"
     ),

@@ -1,0 +1,557 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-16 17:28+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: apps/hidaya/choices/payme.py:6
+msgid "Click"
+msgstr ""
+
+#: apps/hidaya/choices/payme.py:7
+msgid "Payme"
+msgstr ""
+
+#: apps/hidaya/choices/payme.py:8
+msgid "OCTO"
+msgstr ""
+
+#: apps/hidaya/choices/payme.py:9
+msgid "Cash"
+msgstr ""
+
+#: apps/hidaya/models/books.py:8 apps/hidaya/models/info.py:8
+#: apps/hidaya/models/news.py:8 apps/hidaya/models/notification.py:31
+#: apps/hidaya/models/videos.py:8
+msgid "Title"
+msgstr ""
+
+#: apps/hidaya/models/books.py:12 apps/hidaya/models/news.py:12
+msgid "Sub Title"
+msgstr ""
+
+#: apps/hidaya/models/books.py:16 apps/hidaya/models/info.py:9
+#: apps/hidaya/models/news.py:16 apps/hidaya/models/videos.py:9
+msgid "Description"
+msgstr ""
+
+#: apps/hidaya/models/books.py:17
+msgid "Author"
+msgstr ""
+
+#: apps/hidaya/models/books.py:18 apps/hidaya/models/news.py:17
+#: apps/hidaya/models/notification.py:29 apps/hidaya/models/videos.py:10
+msgid "Banner"
+msgstr ""
+
+#: apps/hidaya/models/books.py:19
+msgid "Pages"
+msgstr ""
+
+#: apps/hidaya/models/books.py:20 apps/hidaya/models/videos.py:19
+msgid "Date"
+msgstr ""
+
+#: apps/hidaya/models/books.py:22
+msgid "Price"
+msgstr ""
+
+#: apps/hidaya/models/books.py:27
+msgid "Discount Price"
+msgstr ""
+
+#: apps/hidaya/models/books.py:36 apps/hidaya/models/news.py:22
+#: apps/hidaya/models/videos.py:16
+msgid "Category"
+msgstr ""
+
+#: apps/hidaya/models/books.py:39 apps/hidaya/models/genre.py:13
+msgid "Genre"
+msgstr ""
+
+#: apps/hidaya/models/books.py:41 apps/hidaya/models/genre.py:26
+#: apps/hidaya/models/genre.py:42 apps/hidaya/models/genre.py:58
+#: apps/hidaya/models/info.py:10 apps/hidaya/models/news.py:24
+#: apps/hidaya/models/videos.py:18
+msgid "Is Active"
+msgstr ""
+
+#: apps/hidaya/models/books.py:42
+msgid "File"
+msgstr ""
+
+#: apps/hidaya/models/books.py:45 apps/hidaya/models/videos.py:21
+msgid "Original File"
+msgstr ""
+
+#: apps/hidaya/models/books.py:49
+msgid "Sold Count"
+msgstr ""
+
+#: apps/hidaya/models/books.py:57 apps/hidaya/models/order.py:16
+msgid "Book"
+msgstr ""
+
+#: apps/hidaya/models/books.py:58
+msgid "Books"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:9 apps/hidaya/models/genre.py:24
+#: apps/hidaya/models/genre.py:40 apps/hidaya/models/genre.py:56
+#: apps/hidaya/models/genre.py:72
+msgid "Name"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:14
+msgid "Genres"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:29
+msgid "Book Category"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:30
+msgid "Book Categories"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:45
+msgid "News Category"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:46
+msgid "News Categories"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:61
+msgid "Video Category"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:62
+msgid "Video Categories"
+msgstr ""
+
+#: apps/hidaya/models/genre.py:76 apps/hidaya/models/genre.py:77
+#: apps/hidaya/models/videos.py:11
+msgid "Tags"
+msgstr ""
+
+#: apps/hidaya/models/info.py:13
+msgid "Info"
+msgstr ""
+
+#: apps/hidaya/models/info.py:14
+msgid "Infos"
+msgstr ""
+
+#: apps/hidaya/models/news.py:25 apps/hidaya/models/videos.py:24
+msgid "View Count"
+msgstr ""
+
+#: apps/hidaya/models/news.py:28 apps/hidaya/models/news.py:29
+msgid "News"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:12
+msgid "Single"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:13
+msgid "All"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:21 apps/hidaya/models/order.py:19
+#: apps/users/models/users.py:80
+msgid "User"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:32
+msgid "Message"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:37
+msgid "Type"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:39
+msgid "Is Send"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:40
+msgid "Is Read"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:44
+msgid "Notification"
+msgstr ""
+
+#: apps/hidaya/models/notification.py:45
+msgid "Notifications"
+msgstr ""
+
+#: apps/hidaya/models/order.py:10
+msgid "Electronic"
+msgstr ""
+
+#: apps/hidaya/models/order.py:11
+msgid "Physical"
+msgstr ""
+
+#: apps/hidaya/models/order.py:22
+msgid "Format"
+msgstr ""
+
+#: apps/hidaya/models/order.py:24
+msgid "Address"
+msgstr ""
+
+#: apps/hidaya/models/order.py:26
+msgid "Payment Status"
+msgstr ""
+
+#: apps/hidaya/models/order.py:29
+msgid "Total Price"
+msgstr ""
+
+#: apps/hidaya/models/order.py:39
+msgid "Address is required for physical book purchases"
+msgstr ""
+
+#: apps/hidaya/models/order.py:44
+msgid "Order"
+msgstr ""
+
+#: apps/hidaya/models/order.py:45
+msgid "Orders"
+msgstr ""
+
+#: apps/hidaya/models/videos.py:28
+msgid "HLS Playlist"
+msgstr ""
+
+#: apps/hidaya/models/videos.py:39
+msgid "Video"
+msgstr ""
+
+#: apps/hidaya/models/videos.py:40
+msgid "Videos"
+msgstr ""
+
+#: apps/shared/enums/status.py:6
+msgid "Active"
+msgstr ""
+
+#: apps/shared/enums/status.py:7
+msgid "Pending"
+msgstr ""
+
+#: apps/shared/enums/status.py:8
+msgid "Rejected"
+msgstr ""
+
+#: apps/users/admin/users.py:62 apps/users/models/users.py:39
+msgid "Role"
+msgstr ""
+
+#: apps/users/models/sms.py:18
+msgid "Kod"
+msgstr ""
+
+#: apps/users/models/sms.py:19
+msgid "Urinishlar soni"
+msgstr ""
+
+#: apps/users/models/sms.py:21
+msgid "Qayta yuborishlar soni"
+msgstr ""
+
+#: apps/users/models/sms.py:23 apps/users/models/users.py:24
+msgid "Telefon raqami"
+msgstr ""
+
+#: apps/users/models/sms.py:24
+msgid "Muddati"
+msgstr ""
+
+#: apps/users/models/sms.py:26
+msgid "Bloklanish vaqti"
+msgstr ""
+
+#: apps/users/models/sms.py:31
+msgid "Qayta yuborish bloklanish vaqti"
+msgstr ""
+
+#: apps/users/models/sms.py:87
+msgid "SMS tasdiqlash"
+msgstr ""
+
+#: apps/users/models/sms.py:88
+msgid "SMS tasdiqlashlar"
+msgstr ""
+
+#: apps/users/models/sms.py:94
+msgid "Token"
+msgstr ""
+
+#: apps/users/models/sms.py:96 apps/users/models/users.py:16
+#: apps/users/models/users.py:50 apps/users/models/users.py:68
+msgid "Foydalanuvchi"
+msgstr ""
+
+#: apps/users/models/sms.py:103 apps/users/models/sms.py:104
+msgid "Tokenni tiklash"
+msgstr ""
+
+#: apps/users/models/users.py:15
+msgid "Admin"
+msgstr ""
+
+#: apps/users/models/users.py:17
+msgid "Moderator"
+msgstr ""
+
+#: apps/users/models/users.py:29
+msgid "Foydalanuvchi nomi"
+msgstr ""
+
+#: apps/users/models/users.py:33
+msgid "Avatar"
+msgstr ""
+
+#: apps/users/models/users.py:69 core/config/unfold_navigation.py:29
+#: core/config/unfold_navigation.py:40
+msgid "Foydalanuvchilar"
+msgstr ""
+
+#: apps/users/models/users.py:82
+msgid "IP address"
+msgstr ""
+
+#: apps/users/models/users.py:83
+msgid "User agent"
+msgstr ""
+
+#: apps/users/models/users.py:84
+msgid "Location"
+msgstr ""
+
+#: apps/users/models/users.py:86
+msgid "Last activity"
+msgstr ""
+
+#: apps/users/models/users.py:90
+msgid "FCM token"
+msgstr ""
+
+#: apps/users/models/users.py:95
+msgid "Refresh token"
+msgstr ""
+
+#: apps/users/models/users.py:96
+msgid "Access token"
+msgstr ""
+
+#: apps/users/models/users.py:97
+msgid "Is active"
+msgstr ""
+
+#: apps/users/models/users.py:98
+msgid "Data"
+msgstr ""
+
+#: apps/users/models/users.py:101
+msgid "Active session"
+msgstr ""
+
+#: apps/users/models/users.py:102
+msgid "Active sessions"
+msgstr ""
+
+#: apps/users/models/users.py:107
+msgid "Session"
+msgstr ""
+
+#: apps/users/serializers/passwords.py:37
+#: apps/users/serializers/passwords.py:48
+msgid "User does not exist"
+msgstr ""
+
+#: apps/users/serializers/register.py:27 apps/users/serializers/register.py:44
+msgid "Telefon raqami noto‘g‘ri"
+msgstr ""
+
+#: apps/users/serializers/register.py:30
+msgid "Telefon raqami allaqachon mavjud"
+msgstr ""
+
+#: apps/users/serializers/users.py:58
+msgid "Foydalanuvchi topilmadi. Iltimos, qayta  urinib ko'ring."
+msgstr ""
+
+#: apps/users/services/sms.py:28
+#, python-brace-format
+msgid "Qayta yuborish bloklandi, qayta urunib ko'ring {expired}"
+msgstr ""
+
+#: apps/users/services/sms.py:55 apps/users/services/sms.py:73
+msgid "Invalid confirmation code"
+msgstr ""
+
+#: apps/users/services/sms.py:60
+msgid "Time for confirmation has expired"
+msgstr ""
+
+#: apps/users/services/sms.py:64
+#, python-brace-format
+msgid "Try again in {expired}"
+msgstr ""
+
+#: apps/users/tasks/sms.py:14
+#, python-format
+msgid "Ro'yxatdan o'tishingiz uchun tasdiqlash kodi: %(code)s"
+msgstr ""
+
+#: apps/users/views/passwords.py:74
+msgid "Tasdiqlash ko'di xato"
+msgstr ""
+
+#: apps/users/views/passwords.py:98
+msgid "Token xato"
+msgstr ""
+
+#: apps/users/views/passwords.py:105
+msgid "Parol yangilandi"
+msgstr ""
+
+#: apps/users/views/register.py:37
+msgid "Registration data saved. Please confirm your code."
+msgstr ""
+
+#: apps/users/views/register.py:70
+msgid "Phone number already exists."
+msgstr ""
+
+#: apps/users/views/register.py:83
+msgid "Invalid phone number or code."
+msgstr ""
+
+#: apps/users/views/register.py:100
+#, python-brace-format
+msgid "Confirmation code sent to {phone} phone number."
+msgstr ""
+
+#: apps/users/views/users.py:39
+msgid "Foydalanuvchi hisobini o'chirish."
+msgstr ""
+
+#: apps/users/views/users.py:40
+msgid "Autentifikatsiya qilingan foydalanuvchi hisobini o'chirish."
+msgstr ""
+
+#: apps/users/views/users.py:52
+msgid "Hisob muvaffaqiyatli o'chirildi"
+msgstr ""
+
+#: apps/users/views/users.py:57
+msgid "Parol noto'g'ri kiritildi."
+msgstr ""
+
+#: core/config/unfold_navigation.py:21
+msgid "Bosh sahifa"
+msgstr ""
+
+#: core/config/unfold_navigation.py:32
+msgid "Guruhlar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:48
+msgid "Aktiv sesiyalar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:56
+msgid "SMS kodlar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:67
+msgid "Boshqaruv"
+msgstr ""
+
+#: core/config/unfold_navigation.py:70 core/config/unfold_navigation.py:150
+msgid "Kitoblar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:78 core/config/unfold_navigation.py:171
+msgid "Videolar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:86 core/config/unfold_navigation.py:191
+msgid "Yangiliklar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:94
+msgid "Ma'lumotlar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:105 core/config/unfold_navigation.py:108
+msgid "Buyurtmalar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:116
+msgid "To'lovlar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:127
+msgid "Qo'shimcha"
+msgstr ""
+
+#: core/config/unfold_navigation.py:130
+msgid "Bildirishnomalar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:154
+msgid "Janrlar"
+msgstr ""
+
+#: core/config/unfold_navigation.py:158
+msgid "Kitob kategoriyalari"
+msgstr ""
+
+#: core/config/unfold_navigation.py:175
+msgid "Video turlari"
+msgstr ""
+
+#: core/config/unfold_navigation.py:179
+msgid "Video kategoriyalari"
+msgstr ""
+
+#: core/config/unfold_navigation.py:195
+msgid "Yangilik kategoriyalari"
+msgstr ""
+
+#: core/settings.py:104
+msgid "Russia"
+msgstr ""
+
+#: core/settings.py:105
+msgid "English"
+msgstr ""
+
+#: core/settings.py:106
+msgid "Uzbek"
+msgstr ""
+
+#: core/settings.py:107
+msgid "Krill"
+msgstr ""

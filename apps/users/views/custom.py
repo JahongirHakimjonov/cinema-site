@@ -5,10 +5,12 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+from apps.hidaya.models import Notification
 from apps.users.models import ActiveSessions
 from apps.users.serializers import (
     CustomTokenObtainPairSerializer,
     BlockSessionSerializer,
+    ActiveSessionsSerializer,
 )
 from apps.users.serializers import CustomTokenRefreshSerializer
 from apps.users.services import RegisterService
@@ -30,13 +32,18 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         access_token = jwt_token.get("access")
         user_id = jwt_token.get("user")
 
-        ActiveSessions.objects.create(
+        active_session = ActiveSessions.objects.create(
             user_id=user_id,
             ip=ip_address,
             user_agent=user_agent,
             location=location,
             refresh_token=refresh_token,
             access_token=access_token,
+        )
+        Notification.objects.create(
+            user_id=user_id,
+            title="New Login",
+            description="New login from {}".format(location),
         )
 
         return Response({"refresh": refresh_token, "access": access_token})
@@ -102,3 +109,13 @@ class BlockSessionView(APIView):
             )
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ListSessionView(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ActiveSessionsSerializer
+
+    def get(self, request, *args, **kwargs):
+        sessions = ActiveSessions.objects.filter(user=request.user, is_active=True)
+        serializer = self.serializer_class(sessions, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
