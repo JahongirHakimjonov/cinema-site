@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from apps.hidaya.models import Notification
+from apps.hidaya.models import Notification, NotificationType
 from apps.users.models import ActiveSessions
 from apps.users.serializers import (
     CustomTokenObtainPairSerializer,
@@ -40,10 +40,34 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             refresh_token=refresh_token,
             access_token=access_token,
         )
+        address = f"{active_session.location.get('country', '')}, {active_session.location.get('city', '')}"
+        latitude = active_session.location.get('lat', '')
+        longitude = active_session.location.get('lon', '')
+        coordinates = f"{latitude}, {longitude}"
+        ip = active_session.ip
+        device = active_session.user_agent
+        isp = active_session.location.get('isp', '')
+        timezone = active_session.location.get('timezone', '')
+        created_at = active_session.created_at.strftime("%Y-%m-%d  %H:%M:%S")
+
+        messages = {
+            "uz": f"Akkauntizga soat {created_at} da {address} dan kirildi, Kordinatalar: {coordinates}, IP: {ip}, Qurilma: {device}, ISP: {isp}, Timezone: {timezone}",
+            "ru": f"Ваш аккаунт был вошел в {created_at} из {address}, Координаты: {coordinates}, IP: {ip}, Устройство: {device}, ISP: {isp}, Timezone: {timezone}",
+            "en": f"Your account was logged in at {created_at} from {address}, Coordinates: {coordinates}, IP: {ip}, Device: {device}, ISP: {isp}, Timezone: {timezone}",
+            "uz_Cyrl": f"Аккаунтингизга соат {created_at} да {address} дан кирилди, Кординаталар: {coordinates}, IP: {ip}, Қурилма: {device}, ISP: {isp}, Timezone: {timezone}",
+        }
+
         Notification.objects.create(
             user_id=user_id,
-            title="New Login",
-            description="New login from {}".format(location),
+            title_uz="Yangi kirish",
+            title_ru="Новый вход",
+            title_en="New login",
+            title_uz_Cyrl="Янги кириш",
+            message_uz=messages["uz"],
+            message_ru=messages["ru"],
+            message_en=messages["en"],
+            message_uz_Cyrl=messages["uz_Cyrl"],
+            type=NotificationType.SINGLE,
         )
 
         return Response({"refresh": refresh_token, "access": access_token})
