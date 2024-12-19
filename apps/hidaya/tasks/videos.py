@@ -24,17 +24,13 @@ def process_video(video_id):
             "480p": "854x480",
         }
 
-        hls_playlist = None  # Initialize hls_playlist
+        hls_playlist = None
 
         for res, size in resolutions.items():
             hls_output_dir = os.path.join(
                 settings.MEDIA_ROOT, f"hls_videos/{video.id}/{res}"
             )
-            dash_output_dir = os.path.join(
-                settings.MEDIA_ROOT, f"dash_videos/{video.id}/{res}"
-            )
             os.makedirs(hls_output_dir, exist_ok=True)
-            os.makedirs(dash_output_dir, exist_ok=True)
 
             # HLS conversion
             hls_playlist = os.path.join(hls_output_dir, "playlist.m3u8")
@@ -60,28 +56,9 @@ def process_video(video_id):
                 check=True,
             )
 
-            # DASH conversion
-            dash_manifest = os.path.join(dash_output_dir, "manifest.mpd")
-            subprocess.run(
-                [
-                    "ffmpeg",
-                    "-i",
-                    input_file,
-                    "-vf",
-                    f"scale={size}",
-                    "-c:v",
-                    "libx264",
-                    "-f",
-                    "dash",
-                    dash_manifest,
-                ],
-                check=True,
-            )
-
         if hls_playlist:
             print(f"Video {video_id} processing completed successfully.")
             os.remove(input_file)
-            video.hls_playlist = hls_playlist.replace("app/assets/media/", "")
             video.original_file = None
             video.save()
             print(f"Original file for video {video_id} removed.")

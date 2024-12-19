@@ -23,12 +23,6 @@ class Video(AbstractBaseModel):
     view_count = models.BigIntegerField(
         default=0, verbose_name=_("View Count"), editable=False
     )
-    hls_playlist = models.FileField(
-        upload_to="videos/hls_playlist",
-        verbose_name=_("HLS Playlist"),
-        null=True,
-        blank=True,
-    )
 
     def increment_views(self):
         """Ko'rishlar sonini oshirish uchun metod."""

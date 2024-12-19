@@ -18,5 +18,4 @@ class VideoSerializer(serializers.ModelSerializer):
             "tags",
             "category",
             "date",
-            "hls_playlist",
         )
