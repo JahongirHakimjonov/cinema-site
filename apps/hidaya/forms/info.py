@@ -4,22 +4,7 @@ from django_ckeditor_5.widgets import CKEditor5Widget
 from apps.hidaya.models import Info
 
 
-# class InfoForm(forms.ModelForm):
-#     class Meta:
-#         model = Info
-#         widgets = {
-#             "description": CKEditor5Widget(),
-#         }
-#         fields = "__all__"
-
-
 class InfoForm(forms.ModelForm):
-    """Form for comments to the article."""
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields["text"].required = False
-
     class Meta:
         model = Info
         fields = "__all__"
