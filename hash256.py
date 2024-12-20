@@ -1,10 +1,6 @@
 import hashlib
-import os
 
 import requests
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv(".env"))
 
 video_id = "3"
 quality = "1080p"

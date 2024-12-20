@@ -1,7 +1,7 @@
 import hashlib
-from django.utils import timezone
-from django.http import JsonResponse
+
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.hidaya.utils import generate_signed_url
@@ -13,11 +13,11 @@ class GetSignedVideoURLView(APIView):
     def post(self, request, video_id, quality, file_name):
         key = request.data.get("key")
         if not key:
-            return JsonResponse({"error": "Key is required"}, status=400)
+            return Response({"error": "Key is required"}, status=400)
         combined_key = f"{video_id}{quality}{file_name}"
         hashed_key = hashlib.sha256(combined_key.encode()).hexdigest()
         if key != hashed_key:
-            return JsonResponse({"error": "Invalid key"}, status=400)
+            return Response({"error": "Invalid key"}, status=400)
         path = f"/media/hls_videos/{video_id}/{quality}/{file_name}"
         signed_url = generate_signed_url(path, expiration=300)
-        return JsonResponse({"signed_url": signed_url})
+        return Response({"signed_url": signed_url})
