@@ -11,12 +11,18 @@ class UserService(SmsService):
             self.send_confirm(phone)
             return True
         except exceptions.SmsException as e:
-            ResponseException(e, data={"expired": e.kwargs.get("expired")})  # noqa
+            raise ResponseException(
+                success=False,
+                message=str(e),
+                data={"expired": str(e.kwargs.get("expired"))},
+            )  # noqa
         except Exception as e:
-            ResponseException(e)
+            raise ResponseException(
+                success=False, message=str(e), data={"expired": False}
+            )
 
     @staticmethod
-    def change_password(self, phone, password):
+    def change_password(phone, password):
         """
         Change password
         """

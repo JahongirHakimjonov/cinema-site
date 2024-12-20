@@ -36,7 +36,9 @@ class RegisterView(APIView, UserService):
             return Response(
                 {
                     "success": True,
-                    "message": _("Registration data saved. Please confirm your code."),
+                    "message": _(
+                        f"Registration data saved. Please confirm your code. SMS sent to {phone} phone number."
+                    ),
                 },
                 status=status.HTTP_201_CREATED,
             )
