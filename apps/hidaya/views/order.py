@@ -41,4 +41,10 @@ class OrderCreate(APIView):
             )
             result["payment_link"] = payment_link
 
-        return Response(result)
+        return Response(
+            {
+                "success": True,
+                "message": "Order created successfully.",
+                "data": result,
+            }
+        )

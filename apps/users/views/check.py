@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.users.serializers import CheckPhoneSerializer
@@ -17,4 +18,4 @@ class CheckPhoneView(APIView):
         serializer.is_valid(raise_exception=True)
         email = serializer.validated_data["phone"]
         exists = User.objects.filter(email=email).exists()
-        return JsonResponse({"status": not exists})
+        return Response({"success": not exists})

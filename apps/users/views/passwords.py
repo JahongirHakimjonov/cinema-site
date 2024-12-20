@@ -1,11 +1,11 @@
 import uuid
 
-from django.http import JsonResponse
 from django.utils.translation import gettext_lazy as _
 from rest_framework import status, response
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.request import Request
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.shared.exceptions import SmsException
@@ -28,7 +28,7 @@ class ChangePasswordView(GenericAPIView):
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return JsonResponse({"detail": "Password changed successfully."})
+        return Response({"success": True, "message": "Password changed successfully."})
 
 
 class SendPasswordResetView(GenericAPIView, UserService):
@@ -40,7 +40,7 @@ class SendPasswordResetView(GenericAPIView, UserService):
         serializer.is_valid(raise_exception=True)
         phone = serializer.validated_data["phone"]
         self.send_confirmation(self, phone)
-        return JsonResponse({"detail": "Password reset code sent."})
+        return Response({"success": True, "message": "Password reset code sent."})
 
 
 class ResetConfirmationCodeView(APIView, UserService):
@@ -63,23 +63,30 @@ class ResetConfirmationCodeView(APIView, UserService):
                     token=str(uuid.uuid4()),
                 )
                 return response.Response(
-                    data={
-                        "token": token.token,
-                        "created_at": token.created_at,
-                        "updated_at": token.updated_at,
+                    {
+                        "success": True,
+                        "message": _("Tasdiqlandi"),
+                        "data": {
+                            "token": token.token,
+                            "created_at": token.created_at,
+                            "updated_at": token.updated_at,
+                        },
                     },
                     status=status.HTTP_200_OK,
                 )
             return response.Response(
-                data={"detail": _("Tasdiqlash ko'di xato")},
+                data={"success": False, "message": _("Tasdiqlash ko'di xato")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except SmsException as e:
             return response.Response(
-                {"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST
+                {"success": False, "message": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
-            return response.Response({"detail": e}, status=status.HTTP_400_BAD_REQUEST)
+            return response.Response(
+                {"success": False, "message": e}, status=status.HTTP_400_BAD_REQUEST
+            )
 
 
 class ResetSetPasswordView(APIView, UserService):
@@ -95,12 +102,13 @@ class ResetSetPasswordView(APIView, UserService):
         token = ResetToken.objects.filter(token=token)
         if not token.exists():
             return response.Response(
-                {"detail": _("Token xato")},
+                {"success": False, "message": _("Token xato")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         phone = token.first().user.phone
         token.delete()
         self.change_password(self, phone, password)
         return response.Response(
-            {"detail": _("Parol yangilandi")}, status=status.HTTP_200_OK
+            {"success": True, "message": _("Parol yangilandi")},
+            status=status.HTTP_200_OK,
         )

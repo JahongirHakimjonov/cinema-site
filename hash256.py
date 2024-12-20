@@ -11,7 +11,9 @@ hashed_key = hashlib.sha256(combined_key.encode()).hexdigest()
 
 print(hashed_key)
 
-url = f"http://127.0.0.1:8003/api/v1/videos/{video_id}/{quality}/{file_name}/signed-url/"
+url = (
+    f"http://127.0.0.1:8003/api/v1/videos/{video_id}/{quality}/{file_name}/signed-url/"
+)
 
 response = requests.post(url, data={"key": hashed_key})
 

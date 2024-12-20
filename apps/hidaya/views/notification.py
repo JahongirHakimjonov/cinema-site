@@ -14,11 +14,25 @@ class NotificationView(APIView):
     def get(self, request):
         notifications = Notification.objects.filter(user=request.user)
         serializer = self.serializer_class(notifications, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {
+                "success": True,
+                "message": "Notifications fetched successfully.",
+                "data": serializer.data,
+            },
+            status=status.HTTP_200_OK,
+        )
 
     def post(self, request):
         notification_id = request.data.get("notification_id")
         notification = Notification.objects.get(id=notification_id)
         notification.is_read = True
         notification.save()
-        return Response(status=status.HTTP_200_OK)
+        return Response(
+            {
+                "success": True,
+                "message": "Notification read successfully.",
+                "data": self.serializer_class(notification).data,
+            },
+            status=status.HTTP_200_OK,
+        )

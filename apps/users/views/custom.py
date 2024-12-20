@@ -41,13 +41,13 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             access_token=access_token,
         )
         address = f"{active_session.location.get('country', '')}, {active_session.location.get('city', '')}"
-        latitude = active_session.location.get('lat', '')
-        longitude = active_session.location.get('lon', '')
+        latitude = active_session.location.get("lat", "")
+        longitude = active_session.location.get("lon", "")
         coordinates = f"{latitude}, {longitude}"
         ip = active_session.ip
         device = active_session.user_agent
-        isp = active_session.location.get('isp', '')
-        timezone = active_session.location.get('timezone', '')
+        isp = active_session.location.get("isp", "")
+        timezone = active_session.location.get("timezone", "")
         created_at = active_session.created_at.strftime("%Y-%m-%d  %H:%M:%S")
 
         messages = {
@@ -70,7 +70,14 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             type=NotificationType.SINGLE,
         )
 
-        return Response({"refresh": refresh_token, "access": access_token})
+        return Response(
+            {
+                "success": True,
+                "message": "Successfully logged in",
+                "data": {"access": access_token, "refresh": refresh_token},
+            },
+            status=status.HTTP_200_OK,
+        )
 
 
 class CustomTokenRefreshView(APIView):
@@ -91,7 +98,7 @@ class CustomTokenRefreshView(APIView):
             ).first()
             if not session:
                 return Response(
-                    {"error": "Invalid refresh token"},
+                    {"success": False, "message": "Invalid refresh token"},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
@@ -102,9 +109,21 @@ class CustomTokenRefreshView(APIView):
             # session.refresh_token = new_refresh_token
             session.save()
 
-            return Response({"access": new_access_token}, status=status.HTTP_200_OK)
+            return Response(
+                {
+                    "success": True,
+                    "message": "Successfully refreshed",
+                    "data": {
+                        "access": new_access_token,
+                    },
+                },
+                status=status.HTTP_200_OK,
+            )
         except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"success": False, "message": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
 
 class BlockSessionView(APIView):
@@ -124,15 +143,19 @@ class BlockSessionView(APIView):
             session.save()
 
             return Response(
-                {"message": "Session blocked successfully"}, status=status.HTTP_200_OK
+                {"success": True, "message": "Session blocked successfully"},
+                status=status.HTTP_200_OK,
             )
         except ActiveSessions.DoesNotExist:
             return Response(
-                {"error": "Session not found"},
+                {"success": False, "message": "Session not found"},
                 status=status.HTTP_404_NOT_FOUND,
             )
         except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"success": False, "message": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
 
 class ListSessionView(APIView):
@@ -142,4 +165,11 @@ class ListSessionView(APIView):
     def get(self, request, *args, **kwargs):
         sessions = ActiveSessions.objects.filter(user=request.user, is_active=True)
         serializer = self.serializer_class(sessions, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(
+            {
+                "success": True,
+                "message": "Successfully fetched",
+                "data": serializer.data,
+            },
+            status=status.HTTP_200_OK,
+        )

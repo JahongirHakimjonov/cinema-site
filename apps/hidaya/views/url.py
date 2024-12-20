@@ -20,4 +20,10 @@ class GetSignedVideoURLView(APIView):
             return Response({"error": "Invalid key"}, status=400)
         path = f"/media/hls_videos/{video_id}/{quality}/{file_name}"
         signed_url = generate_signed_url(path, expiration=300)
-        return Response({"signed_url": signed_url})
+        return Response(
+            {
+                "success": True,
+                "message": "Signed URL generated successfully.",
+                "data": {"signed_url": signed_url},
+            }
+        )

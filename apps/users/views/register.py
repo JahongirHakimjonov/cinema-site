@@ -34,10 +34,20 @@ class RegisterView(APIView, UserService):
             redis_instance.hmset(phone, serializer.validated_data)
             self.send_confirmation(self, phone)
             return Response(
-                {"message": _("Registration data saved. Please confirm your code.")},
+                {
+                    "success": True,
+                    "message": _("Registration data saved. Please confirm your code."),
+                },
                 status=status.HTTP_201_CREATED,
             )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {
+                "success": False,
+                "message": _("Invalid data."),
+                "data": serializer.errors,
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
 
 class ConfirmView(APIView):
@@ -67,23 +77,40 @@ class ConfirmView(APIView):
                                 e
                             ):
                                 return Response(
-                                    {"detail": _("Phone number already exists.")},
+                                    {
+                                        "success": False,
+                                        "message": _("Phone number already exists."),
+                                    },
                                     status=status.HTTP_400_BAD_REQUEST,
                                 )
                             return Response(
-                                {"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST
+                                {"success": False, "message": str(e)},
+                                status=status.HTTP_400_BAD_REQUEST,
                             )
                     token = user.tokens()
                     return Response(token, status=status.HTTP_201_CREATED)
             except SmsException as e:
-                return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"success": False, "message": str(e)},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
             except Exception as e:
-                return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"success": False, "message": str(e)},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
             return Response(
-                {"error": _("Invalid phone number or code.")},
+                {"success": False, "message": _("Invalid phone number or code.")},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {
+                "success": False,
+                "message": _("Invalid data."),
+                "data": serializer.errors,
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
 
 class ResendView(APIView, UserService):
@@ -97,6 +124,9 @@ class ResendView(APIView, UserService):
         phone = serializer.data.get("phone")
         self.send_confirmation(self, phone)
         return Response(
-            {"message": _(f"Confirmation code sent to {phone} phone number.")},
+            {
+                "success": True,
+                "message": _(f"Confirmation code sent to {phone} phone number."),
+            },
             status=status.HTTP_200_OK,
         )

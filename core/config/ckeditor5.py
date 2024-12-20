@@ -47,8 +47,8 @@ CKEDITOR_5_CONFIGS = {
             "undo",
             "redo",
         ],
-        'extraAllowedContent': 'iframe[*]',  # Allow all iframe attributes
-        'allowedContent': True,  # Allow all content types
+        "extraAllowedContent": "iframe[*]",  # Allow all iframe attributes
+        "allowedContent": True,  # Allow all content types
         "alignment": {
             "options": ["left", "center", "right", "justify"],
         },
@@ -198,5 +198,18 @@ CKEDITOR_5_CONFIGS = {
 }
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
 CKEDITOR_5_MAX_FILE_SIZE = 5
-CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpeg", "png", "gif", "bmp", "webp", "tiff", "jpg", "pdf", "docx", "doc", "xls", "xlsx"]
+CKEDITOR_5_UPLOAD_FILE_TYPES = [
+    "jpeg",
+    "png",
+    "gif",
+    "bmp",
+    "webp",
+    "tiff",
+    "jpg",
+    "pdf",
+    "docx",
+    "doc",
+    "xls",
+    "xlsx",
+]
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "any"

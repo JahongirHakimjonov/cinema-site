@@ -28,4 +28,10 @@ class BookDetail(APIView):
     def get(self, request, pk):
         book = Book.objects.get(pk=pk, is_active=True)
         serializer = self.serializer_class(book, context={"request": request})
-        return Response(serializer.data)
+        return Response(
+            {
+                "success": True,
+                "message": "Book fetched successfully.",
+                "data": serializer.data,
+            }
+        )

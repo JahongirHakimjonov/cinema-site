@@ -27,4 +27,10 @@ class InfoDetail(APIView):
     def get(self, request, pk):
         info = Info.objects.get(pk=pk, is_active=True)
         serializer = self.serializer_class(info)
-        return Response(serializer.data)
+        return Response(
+            {
+                "success": True,
+                "message": "Info fetched successfully.",
+                "data": serializer.data,
+            }
+        )

@@ -28,4 +28,10 @@ class NewsDetail(APIView):
         news = News.objects.get(pk=pk, is_active=True)
         news.increment_views()
         serializer = self.serializer_class(news)
-        return Response(serializer.data)
+        return Response(
+            {
+                "success": True,
+                "message": "News fetched successfully.",
+                "data": serializer.data,
+            }
+        )

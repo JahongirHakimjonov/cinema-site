@@ -28,4 +28,10 @@ class VideoDetail(APIView):
         video = Video.objects.get(pk=pk, is_active=True)
         video.increment_views()
         serializer = self.serializer_class(video)
-        return Response(serializer.data)
+        return Response(
+            {
+                "success": True,
+                "message": "Video fetched successfully.",
+                "data": serializer.data,
+            }
+        )

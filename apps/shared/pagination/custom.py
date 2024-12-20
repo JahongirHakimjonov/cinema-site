@@ -10,6 +10,8 @@ class CustomPagination(PageNumberPagination):
         paginator = self.page.paginator
         return Response(
             {
+                "success": True,
+                "message": "Data fetched successfully.",
                 "links": {
                     "next": self.get_next_link(),
                     "previous": self.get_previous_link(),
