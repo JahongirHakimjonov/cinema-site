@@ -11,13 +11,13 @@ class UserService(SmsService):
             self.send_confirm(phone)
             return True
         except exceptions.SmsException as e:
-            raise ResponseException(
+            raise ResponseException(  # noqa
                 success=False,
                 message=str(e),
                 data={"expired": str(e.kwargs.get("expired"))},
-            )  # noqa
+            )
         except Exception as e:
-            raise ResponseException(
+            raise ResponseException(  # noqa
                 success=False, message=str(e), data={"expired": False}
             )
 
