@@ -1,4 +1,4 @@
-from rest_framework.response import Response
+from django.http import JsonResponse
 from django.utils.deprecation import MiddlewareMixin
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
@@ -28,7 +28,7 @@ class CheckActiveSessionMiddleware(MiddlewareMixin):
                         session.fcm_token = fcm_token
                     session.save()
                     if not session.is_active:
-                        return Response(
+                        return JsonResponse(
                             {
                                 "success": False,
                                 "message": "Invalid access token. Session is inactive.",
@@ -36,7 +36,7 @@ class CheckActiveSessionMiddleware(MiddlewareMixin):
                             status=status.HTTP_401_UNAUTHORIZED,
                         )
                 else:
-                    return Response(
+                    return JsonResponse(
                         {
                             "success": False,
                             "message": "Session not found. Please log in again.",
@@ -44,12 +44,12 @@ class CheckActiveSessionMiddleware(MiddlewareMixin):
                         status=status.HTTP_401_UNAUTHORIZED,
                     )
         except AuthenticationFailed as e:
-            return Response(
+            return JsonResponse(
                 {"success": False, "message": str(e)},
                 status=status.HTTP_401_UNAUTHORIZED,
             )
         except Exception as e:
-            return Response(
+            return JsonResponse(
                 {"success": False, "message": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
