@@ -31,6 +31,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         refresh_token = jwt_token.get("refresh")
         access_token = jwt_token.get("access")
         user_id = jwt_token.get("user")
+        fcm_token = request.headers.get("FCM-Token")
 
         active_session = ActiveSessions.objects.create(
             user_id=user_id,
@@ -39,6 +40,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             location=location,
             refresh_token=refresh_token,
             access_token=access_token,
+            fcm_token=fcm_token if fcm_token else None,
         )
         address = f"{active_session.location.get('country', '')}, {active_session.location.get('city', '')}"
         latitude = active_session.location.get("lat", "")
