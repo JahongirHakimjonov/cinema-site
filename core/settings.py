@@ -124,3 +124,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = "users.User"
+
+SIGNED_URL_EXPIRATION = os.getenv("SIGNED_URL_EXPIRATION", 60)
+RATE_LIMIT = os.getenv("RATE_LIMIT", 5)

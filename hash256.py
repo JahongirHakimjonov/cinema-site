@@ -2,7 +2,7 @@ import hashlib
 
 import requests
 
-video_id = "3"
+video_id = "1"
 quality = "1080p"
 file_name = "playlist.m3u8"
 
@@ -15,6 +15,7 @@ url = (
     f"http://127.0.0.1:8003/api/v1/videos/{video_id}/{quality}/{file_name}/signed-url/"
 )
 
-response = requests.post(url, data={"key": hashed_key})
+for _ in range(10):
+    response = requests.post(url, data={"key": hashed_key})
 
-print(response.json())
+    print(response.json())
