@@ -14,7 +14,7 @@ class GetSignedVideoURLView(APIView):
 
     def post(self, request, video_id, quality, file_name):
         key = request.data.get("key")
-        client_ip = request.META.get('REMOTE_ADDR')
+        client_ip = request.META.get("REMOTE_ADDR")
 
         if not key:
             return Response({"error": "Key is required"}, status=400)
@@ -24,7 +24,7 @@ class GetSignedVideoURLView(APIView):
 
         cache_key = f"rate_limit_{client_ip}"
         request_count = cache.get(cache_key, 0)
-        request_rate_limit = getattr(settings, 'RATE_LIMIT', 10)
+        request_rate_limit = getattr(settings, "RATE_LIMIT", 10)
         if request_count >= int(request_rate_limit):
             return Response({"error": "Rate limit exceeded"}, status=429)
         cache.set(cache_key, request_count + 1, timeout=60)
@@ -37,7 +37,7 @@ class GetSignedVideoURLView(APIView):
 
         path = f"/media/hls_videos/{video_id}/{quality}/{file_name}"
 
-        expiration_time = getattr(settings, 'SIGNED_URL_EXPIRATION', 60)
+        expiration_time = getattr(settings, "SIGNED_URL_EXPIRATION", 60)
         signed_url = generate_signed_url(path, expiration=int(expiration_time))
 
         # if not request.is_secure():

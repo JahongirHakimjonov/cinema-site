@@ -2,23 +2,30 @@ from rest_framework.exceptions import (
     AuthenticationFailed,
     NotAuthenticated,
     MethodNotAllowed,
+    ValidationError,
+    PermissionDenied,
+    NotFound,
+    Throttled,
+    NotAcceptable,
 )
 from rest_framework.views import exception_handler
 
 
 def custom_exception_handler(exc, context):
     response = exception_handler(exc, context)
-
-    if isinstance(exc, AuthenticationFailed):
-        response.data = {"success": False, "message": "Incorrect authentication credentials."}
-
-    elif isinstance(exc, NotAuthenticated):
+    if response is not None:
+        messages = {
+            AuthenticationFailed: "Incorrect authentication credentials.",
+            NotAuthenticated: "Authentication credentials were not provided.",
+            MethodNotAllowed: "Method not allowed.",
+            ValidationError: "Invalid input.",
+            PermissionDenied: "You do not have permission to perform this action.",
+            NotFound: "Not found.",
+            Throttled: "Request was throttled.",
+            NotAcceptable: "Not acceptable.",
+        }
         response.data = {
             "success": False,
-            "message": "Authentication credentials were not provided.",
+            "message": messages.get(type(exc), "An error occurred."),
         }
-
-    elif isinstance(exc, MethodNotAllowed):
-        response.data = {"success": False, "message": "Method not allowed."}
-
     return response
