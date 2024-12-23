@@ -1,3 +1,5 @@
+from django.db.models import Q
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,8 +14,28 @@ class InfoList(APIView):
     pagination_class = CustomPagination
     permission_classes = [AllowAny]
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="search",
+                description="Search term for filtering info by title or description",
+                required=False,
+                type=str,
+            )
+        ],
+        responses=InfoSerializer(many=True),
+    )
     def get(self, request):
+        search = request.query_params.get("search")
         info = Info.objects.filter(is_active=True)
+
+        if search:
+            search_terms = search[:100].split()
+            query = Q()
+            for term in search_terms:
+                query &= Q(title__icontains=term) | Q(description__icontains=term)
+            info = info.filter(query).distinct()
+
         paginator = self.pagination_class()
         paginated_info = paginator.paginate_queryset(info, request)
         serializer = self.serializer_class(paginated_info, many=True)
