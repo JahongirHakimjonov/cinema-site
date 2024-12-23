@@ -1,6 +1,7 @@
 from payme.models import PaymeTransactions
 from payme.types import response
 from payme.views import PaymeWebHookAPIView
+from rest_framework.permissions import AllowAny
 
 from apps.hidaya.models import Order
 
@@ -11,6 +12,7 @@ class PaymeCallBackAPIView(PaymeWebHookAPIView):
     A view to handle Payme Webhook API calls.
     This view will handle all the Payme Webhook API events.
     """
+    permission_classes = [AllowAny]
 
     def check_perform_transaction(self, params):
         account = self.fetch_account(params)
