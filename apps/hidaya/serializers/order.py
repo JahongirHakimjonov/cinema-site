@@ -17,12 +17,13 @@ class OrderSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         )
-        read_only_fields = ["id", "created_at", "updated_at"]
-        extra_kwargs = {
-            "payment_status": {"read_only": True},
-            "total_price": {"read_only": True},
-            "payment_method": {"read_only": True},
-        }
+        read_only_fields = [
+            "id",
+            "created_at",
+            "updated_at",
+            "payment_status",
+            "total_price",
+        ]
 
     def create(self, validated_data):
         user = self.context["request"].user
