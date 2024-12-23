@@ -45,19 +45,19 @@ class NotificationView(APIView):
                 "properties": {
                     "notification_id": {
                         "type": "integer",
-                        "description": "ID of the notification to mark as read"
+                        "description": "ID of the notification to mark as read",
                     }
                 },
-                "required": ["notification_id"]
+                "required": ["notification_id"],
             }
         },
         responses={
             200: NotificationSerializer,
             404: OpenApiExample(
                 "Notification not found",
-                value={"success": False, "message": "Notification not found."}
-            )
-        }
+                value={"success": False, "message": "Notification not found."},
+            ),
+        },
     )
     def post(self, request):
         notification_id = request.data.get("notification_id")
