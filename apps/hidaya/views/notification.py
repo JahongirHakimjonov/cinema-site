@@ -1,4 +1,4 @@
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -38,9 +38,35 @@ class NotificationView(APIView):
 
         return paginator.get_paginated_response(serializer.data)
 
+    @extend_schema(
+        request={
+            "application/json": {
+                "type": "object",
+                "properties": {
+                    "notification_id": {
+                        "type": "integer",
+                        "description": "ID of the notification to mark as read"
+                    }
+                },
+                "required": ["notification_id"]
+            }
+        },
+        responses={
+            200: NotificationSerializer,
+            404: OpenApiExample(
+                "Notification not found",
+                value={"success": False, "message": "Notification not found."}
+            )
+        }
+    )
     def post(self, request):
         notification_id = request.data.get("notification_id")
-        notification = Notification.objects.get(id=notification_id)
+        notification = Notification.objects.get(id=notification_id, user=request.user)
+        if not notification:
+            return Response(
+                {"success": False, "message": "Notification not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
         notification.is_read = True
         notification.save()
         return Response(
