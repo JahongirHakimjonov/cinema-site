@@ -127,3 +127,5 @@ AUTH_USER_MODEL = "users.User"
 
 SIGNED_URL_EXPIRATION = os.getenv("SIGNED_URL_EXPIRATION", 60)
 RATE_LIMIT = os.getenv("RATE_LIMIT", 5)
+
+LOCALE_MIDDLEWARE_EXCLUDED_PATHS = ['/media/', '/static/']
