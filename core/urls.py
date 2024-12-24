@@ -9,6 +9,9 @@ from core.config.swagger import urlpatterns as swagger_patterns
 urlpatterns = (
     [
         path("i18n/", include("django.conf.urls.i18n")),
+        # Media and static files
+        re_path(r"static/(?P<path>.*)", serve, {"document_root": settings.STATIC_ROOT}),
+        re_path(r"media/(?P<path>.*)", serve, {"document_root": settings.MEDIA_ROOT}),
     ]
     + i18n_patterns(
         path("admin/", admin.site.urls),
@@ -23,9 +26,6 @@ urlpatterns = (
             include("django_ckeditor_5.urls"),
             name="ck_editor_5_upload_file",
         ),
-        # Media and static files
-        re_path(r"static/(?P<path>.*)", serve, {"document_root": settings.STATIC_ROOT}),
-        re_path(r"media/(?P<path>.*)", serve, {"document_root": settings.MEDIA_ROOT}),
     ]
 )
 
