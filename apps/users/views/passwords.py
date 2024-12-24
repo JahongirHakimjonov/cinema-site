@@ -107,7 +107,7 @@ class ResetSetPasswordView(APIView, UserService):
             )
         phone = token.first().user.phone
         token.delete()
-        self.change_password(self, phone, password)
+        self.change_password(phone=phone, password=password)
         return response.Response(
             {"success": True, "message": _("Parol yangilandi")},
             status=status.HTTP_200_OK,
