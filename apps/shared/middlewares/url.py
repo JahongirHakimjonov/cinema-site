@@ -18,13 +18,6 @@ class SignedURLMiddleware:
         parsed_url = urlparse(request.get_full_path())
         path = parsed_url.path
 
-        # Check if the path starts with /media/
-        if path.startswith("/media/"):
-            # Remove the language prefix if it exists
-            parts = path.split('/')
-            if len(parts) > 2 and parts[2] in ['uz', 'ru', 'en']:
-                path = '/' + '/'.join(parts[:2] + parts[3:])
-
         # Check if the path starts with /media/hls_videos/
         if not path.startswith("/media/hls_videos/"):
             return self.get_response(request)
