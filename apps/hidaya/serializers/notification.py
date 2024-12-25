@@ -6,4 +6,4 @@ from apps.hidaya.models import Notification
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
-        fields = "__all__"
+        fields = ("id", "user", "banner", "title", "message", "created_at", "is_read")

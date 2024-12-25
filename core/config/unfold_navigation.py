@@ -98,6 +98,14 @@ PAGES = [
                     request.user, "view_info"
                 ),
             },
+            {
+                "title": _("Partnyorlar"),
+                "icon": "handshake",
+                "link": reverse_lazy("admin:hidaya_partner_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_partner"
+                ),
+            },
         ],
     },
     {
