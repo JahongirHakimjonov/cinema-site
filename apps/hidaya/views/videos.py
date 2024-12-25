@@ -43,7 +43,7 @@ class VideoList(APIView):
             search_terms = search[:100].split()
             query = Q()
             for term in search_terms:
-                query &= Q(title__icontains=term) | Q(description__icontains=term)
+                query |= Q(title__icontains=term) | Q(description__icontains=term)
             videos = videos.filter(query).distinct()
 
         paginator = self.pagination_class()
