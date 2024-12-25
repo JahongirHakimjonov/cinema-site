@@ -36,15 +36,15 @@ class VideoList(APIView):
         category = request.query_params.get("category")
         videos = Video.objects.filter(is_active=True)
 
-        if category:
-            videos = videos.filter(category=category)
-
         if search:
             search_terms = search[:100].split()
             query = Q()
             for term in search_terms:
-                query |= Q(title__icontains=term) | Q(description__icontains=term)
+                query &= Q(title__icontains=term) | Q(description__icontains=term)
             videos = videos.filter(query).distinct()
+
+        if category:
+            videos = videos.filter(category=category)
 
         paginator = self.pagination_class()
         paginated_videos = paginator.paginate_queryset(videos, request)
