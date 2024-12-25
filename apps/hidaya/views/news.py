@@ -61,7 +61,11 @@ class NewsDetail(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, pk):
-        news = News.objects.get(pk=pk, is_active=True)
+        news = News.objects.filter(pk=pk, is_active=True).last()
+        if not news:
+            return Response(
+                {"success": False, "message": "News not found."}, status=404
+            )
         news.increment_views()
         serializer = self.serializer_class(news)
         return Response(

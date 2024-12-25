@@ -61,7 +61,11 @@ class BookDetail(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, pk):
-        book = Book.objects.get(pk=pk, is_active=True)
+        book = Book.objects.filter(pk=pk, is_active=True).last()
+        if not book:
+            return Response(
+                {"success": False, "message": "Book not found."}, status=404
+            )
         serializer = self.serializer_class(book, context={"request": request})
         return Response(
             {

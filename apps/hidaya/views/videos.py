@@ -57,7 +57,11 @@ class VideoDetail(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, pk):
-        video = Video.objects.get(pk=pk, is_active=True)
+        video = Video.objects.filter(pk=pk, is_active=True).last()
+        if not video:
+            return Response(
+                {"success": False, "message": "Video not found."}, status=404
+            )
         video.increment_views()
         serializer = self.serializer_class(video)
         return Response(

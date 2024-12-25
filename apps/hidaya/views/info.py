@@ -47,7 +47,11 @@ class InfoDetail(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, pk):
-        info = Info.objects.get(pk=pk, is_active=True)
+        info = Info.objects.filter(pk=pk, is_active=True).last()
+        if not info:
+            return Response(
+                {"success": False, "message": "Info not found."}, status=404
+            )
         serializer = self.serializer_class(info)
         return Response(
             {

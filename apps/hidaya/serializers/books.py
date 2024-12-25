@@ -44,12 +44,16 @@ class BookDetailSerializer(serializers.ModelSerializer):
     def get_category(self, obj):
         from apps.hidaya.serializers import BookCategorySerializer
 
-        return BookCategorySerializer(obj.category).data
+        if obj.category is not None:
+            return BookCategorySerializer(obj.category).data
+        return {}
 
     def get_genre(self, obj):
         from apps.hidaya.serializers import GenreSerializer
 
-        return GenreSerializer(obj.genre, many=True).data
+        if obj.genre is not None:
+            return GenreSerializer(obj.genre, many=True).data
+        return []
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -60,5 +64,6 @@ class BookDetailSerializer(serializers.ModelSerializer):
             user=user, book=instance, payment_status=True
         ).exists()
         representation["is_purchased"] = order
-        if order:
+        if order and instance.original_file:
             representation["original_file"] = instance.original_file.url
+        return representation
