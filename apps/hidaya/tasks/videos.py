@@ -20,8 +20,6 @@ def process_video(video_id):
         input_file = video.original_file.path
         resolutions = {
             "1080p": "1920x1080",
-            "720p": "1280x720",
-            "480p": "854x480",
         }
 
         hls_playlist = None
