@@ -40,7 +40,14 @@ class VideoList(APIView):
             search_terms = search[:100].split()
             query = Q()
             for term in search_terms:
-                query &= Q(title__icontains=term) | Q(description__icontains=term)
+                query &= (Q(title__icontains=term) | Q(description__icontains=term)
+                          | Q(title_uz__icontains=term)
+                          | Q(title_ru__icontains=term)
+                          | Q(title_en__icontains=term)
+                          | Q(description_uz__icontains=term)
+                            | Q(description_ru__icontains=term)
+                            | Q(description_en__icontains=term)
+                          )
             videos = videos.filter(query).distinct()
 
         if category:
