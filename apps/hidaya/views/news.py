@@ -45,8 +45,20 @@ class NewsList(APIView):
             for term in search_terms:
                 query &= (
                     Q(title__icontains=term)
+                    |Q(title_uz__icontains=term)
+                    |Q(title_ru__icontains=term)
+                    |Q(title_en__icontains=term)
+                    |Q(title_uz_Cyrl__icontains=term)
                     | Q(sub_title__icontains=term)
+                    | Q(sub_title_uz__icontains=term)
+                    | Q(sub_title_ru__icontains=term)
+                    | Q(sub_title_en__icontains=term)
+                    | Q(sub_title_uz_Cyrl__icontains=term)
                     | Q(description__icontains=term)
+                    | Q(description_uz__icontains=term)
+                    | Q(description_ru__icontains=term)
+                    | Q(description_en__icontains=term)
+                    | Q(description_uz_Cyrl__icontains=term)
                 )
             news = news.filter(query).distinct()
 
