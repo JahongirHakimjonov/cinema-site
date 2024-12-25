@@ -66,7 +66,7 @@ class BookDetail(APIView):
             return Response(
                 {"success": False, "message": "Book not found."}, status=404
             )
-        serializer = self.serializer_class(book, context={"request": request})
+        serializer = self.serializer_class(book)
         return Response(
             {
                 "success": True,

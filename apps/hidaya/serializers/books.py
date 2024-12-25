@@ -55,15 +55,15 @@ class BookDetailSerializer(serializers.ModelSerializer):
             return GenreSerializer(obj.genre, many=True).data
         return []
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        user = self.context["request"].user
-        if user.is_anonymous:
-            return representation
-        order = Order.objects.filter(
-            user=user, book=instance, payment_status=True
-        ).exists()
-        representation["is_purchased"] = order
-        if order and instance.original_file:
-            representation["original_file"] = instance.original_file.url
-        return representation
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     user = self.context["request"].user
+    #     if user.is_anonymous:
+    #         return representation
+    #     order = Order.objects.filter(
+    #         user=user, book=instance, payment_status=True
+    #     ).exists()
+    #     representation["is_purchased"] = order
+    #     if order and instance.original_file:
+    #         representation["original_file"] = instance.original_file.url
+    #     return representation
