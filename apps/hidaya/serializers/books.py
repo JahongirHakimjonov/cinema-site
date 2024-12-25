@@ -54,6 +54,8 @@ class BookDetailSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         user = self.context["request"].user
+        if user.is_anonymous:
+            return representation
         order = Order.objects.filter(
             user=user, book=instance, payment_status=True
         ).exists()
