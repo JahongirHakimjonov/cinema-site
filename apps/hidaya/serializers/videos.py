@@ -19,5 +19,5 @@ class VideoSerializer(serializers.ModelSerializer):
             "category",
             "date",
             "type",
-            "video_url",
+            "iframe",
         )
