@@ -106,6 +106,14 @@ PAGES = [
                     request.user, "view_partner"
                 ),
             },
+            {
+                "title": _("Platforma"),
+                "icon": "data_info_alert",
+                "link": reverse_lazy("admin:hidaya_platform_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_platform"
+                ),
+            },
         ],
     },
     {
