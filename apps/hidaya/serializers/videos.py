@@ -5,7 +5,7 @@ from apps.hidaya.serializers import TagsSerializer, VideoCategorySerializer
 
 
 class VideoSerializer(serializers.ModelSerializer):
-    tags = TagsSerializer()
+    tags = TagsSerializer(many=True)
     category = VideoCategorySerializer()
 
     class Meta:
