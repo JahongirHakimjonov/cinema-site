@@ -2,8 +2,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.hidaya.models import Partner
-from apps.hidaya.serializers import PartnerSerializer
+from apps.hidaya.models import Partner, Platform
+from apps.hidaya.serializers import PartnerSerializer, PlatformSerializer
 
 
 class PartnerList(APIView):
@@ -17,6 +17,22 @@ class PartnerList(APIView):
             {
                 "success": True,
                 "message": "Partners fetched successfully.",
+                "data": serializer.data,
+            }
+        )
+
+
+class PlatformList(APIView):
+    serializer_class = PlatformSerializer
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        platforms = Platform.objects.all()
+        serializer = self.serializer_class(platforms, many=True)
+        return Response(
+            {
+                "success": True,
+                "message": "Platforms fetched successfully.",
                 "data": serializer.data,
             }
         )

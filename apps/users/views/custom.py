@@ -56,7 +56,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             "uz": f"Akkauntizga soat {created_at} da {address} dan kirildi, Kordinatalar: {coordinates}, IP: {ip}, Qurilma: {device}, ISP: {isp}, Timezone: {timezone}",
             "ru": f"Ваш аккаунт был вошел в {created_at} из {address}, Координаты: {coordinates}, IP: {ip}, Устройство: {device}, ISP: {isp}, Timezone: {timezone}",
             "en": f"Your account was logged in at {created_at} from {address}, Coordinates: {coordinates}, IP: {ip}, Device: {device}, ISP: {isp}, Timezone: {timezone}",
-            "uz_Cyrl": f"Аккаунтингизга соат {created_at} да {address} дан кирилди, Кординаталар: {coordinates}, IP: {ip}, Қурилма: {device}, ISP: {isp}, Timezone: {timezone}",
+            "ko": f"Аккаунтингизга соат {created_at} да {address} дан кирилди, Кординаталар: {coordinates}, IP: {ip}, Қурилма: {device}, ISP: {isp}, Timezone: {timezone}",
         }
 
         Notification.objects.create(
@@ -64,11 +64,11 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             title_uz="Yangi kirish",
             title_ru="Новый вход",
             title_en="New login",
-            title_uz_Cyrl="Янги кириш",
+            title_ko="Янги кириш",
             message_uz=messages["uz"],
             message_ru=messages["ru"],
             message_en=messages["en"],
-            message_uz_Cyrl=messages["uz_Cyrl"],
+            message_ko=messages["ko"],
             type=NotificationType.SINGLE,
         )
 

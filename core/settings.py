@@ -100,15 +100,15 @@ USE_I18N = True
 USE_TZ = True
 
 LANGUAGES = (
-    ("ru", _("Russia")),
-    ("en", _("English")),
+    # ("tr", _("Turkish")),
+    # ("en", _("English")),
     ("uz", _("Uzbek")),
-    ("uz-Cyrl", _("Krill")),
+    # ("ko", _("Krill")),
 )
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
-MODELTRANSLATION_LANGUAGES = ("uz", "ru", "en", "uz-Cyrl")
+MODELTRANSLATION_LANGUAGES = ("uz", "tr", "en", "ko")
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = "uz"
 

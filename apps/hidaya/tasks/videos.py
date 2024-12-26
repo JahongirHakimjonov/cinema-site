@@ -64,11 +64,11 @@ def process_video(video_id):
                 title_uz="Yangi video qo'shildi",
                 title_ru="Добавлено новое видео",
                 title_en="New video added",
-                title_uz_Cyrl="Янги видео қўшилди",
+                title_ko="Янги видео қўшилди",
                 message_uz=f"{video.title_uz}",
                 message_ru=f"{video.title_ru}",
                 message_en=f"{video.title_en}",
-                message_uz_Cyrl=f"{video.title_uz_Cyrl}",
+                message_ko=f"{video.title_ko}",
                 banner=video.banner,
                 type=NotificationType.ALL,
             )

@@ -1,8 +1,8 @@
 from django.urls import path
 
 from apps.hidaya.views import (
-    PaymeCallBackAPIView,
-    OrderCreate,
+    # PaymeCallBackAPIView,
+    # OrderCreate,
     BookList,
     BookDetail,
     NewsDetail,
@@ -16,12 +16,12 @@ from apps.hidaya.views import (
     VideoDetail,
     GetSignedVideoURLView,
     NotificationView,
-    PartnerList
+    PartnerList, PlatformList
 )
 
 urlpatterns = [
-    path("merchant/payme/", PaymeCallBackAPIView.as_view(), name="payme-callback"),
-    path("order/", OrderCreate.as_view(), name="order-create"),
+    # path("merchant/payme/", PaymeCallBackAPIView.as_view(), name="payme-callback"),
+    # path("order/", OrderCreate.as_view(), name="order-create"),
     path("book/", BookList.as_view(), name="book-list"),
     path("book/<int:pk>/", BookDetail.as_view(), name="book-detail"),
     path("news/", NewsList.as_view(), name="news-list"),
@@ -31,6 +31,7 @@ urlpatterns = [
     path("info/", InfoList.as_view(), name="info-list"),
     path("info/<int:pk>/", InfoDetail.as_view(), name="info-detail"),
     path("partner/", PartnerList.as_view(), name="partner-list"),
+    path("platform/", PlatformList.as_view(), name="platform-list"),
     path("category/book/", BookCategoryList.as_view(), name="category-book-list"),
     path("category/news/", NewsCategoryList.as_view(), name="category-news-list"),
     path("category/video/", VideoCategoryList.as_view(), name="category-video-list"),

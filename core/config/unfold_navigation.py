@@ -120,14 +120,14 @@ PAGES = [
                     request.user, "view_order"
                 ),
             },
-            {
-                "title": _("To'lovlar"),
-                "icon": "payments",
-                "link": reverse_lazy("admin:payme_paymetransactions_changelist"),
-                "permission": lambda request: user_has_group_or_permission(
-                    request.user, "view_paymetransactions"
-                ),
-            },
+            # {
+            #     "title": _("To'lovlar"),
+            #     "icon": "payments",
+            #     "link": reverse_lazy("admin:payme_paymetransactions_changelist"),
+            #     "permission": lambda request: user_has_group_or_permission(
+            #         request.user, "view_paymetransactions"
+            #     ),
+            # },
         ],
     },
     {

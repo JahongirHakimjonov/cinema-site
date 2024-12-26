@@ -12,7 +12,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
     "drf_spectacular_sidecar",
-    "payme",
+    # "payme",
 ]
 
 DEFAULT_APPS = [
