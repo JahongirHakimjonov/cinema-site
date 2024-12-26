@@ -25,7 +25,7 @@ class Video(AbstractBaseModel):
     type = models.CharField(
         max_length=10, choices=VideoType, default=VideoType.VIDEO
     )
-    video_url = models.URLField(verbose_name=_("Video URL"), blank=True, null=True)
+    iframe = models.TextField(verbose_name=_("Iframe"), blank=True, null=True)
     original_file = models.FileField(
         upload_to="videos/original", verbose_name=_("Original File"), blank=True, null=True
     )
