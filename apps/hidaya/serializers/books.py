@@ -17,8 +17,9 @@ class BookSerializer(serializers.ModelSerializer):
 
 
 class BookDetailSerializer(serializers.ModelSerializer):
-    category = serializers.SerializerMethodField()
-    genre = serializers.SerializerMethodField()
+    from apps.hidaya.serializers import BookCategorySerializer, GenreSerializer
+    category = BookCategorySerializer()
+    genre = GenreSerializer(many=True)
 
     class Meta:
         model = Book
@@ -41,19 +42,19 @@ class BookDetailSerializer(serializers.ModelSerializer):
             "created_at",
         )
 
-    def get_category(self, obj):
-        from apps.hidaya.serializers import BookCategorySerializer
-
-        if obj.category is not None:
-            return BookCategorySerializer(obj.category).data
-        return {}
-
-    def get_genre(self, obj):
-        from apps.hidaya.serializers import GenreSerializer
-
-        if obj.genre is not None:
-            return GenreSerializer(obj.genre, many=True).data
-        return []
+    # def get_category(self, obj):
+    #     from apps.hidaya.serializers import BookCategorySerializer
+    #
+    #     if obj.category is not None:
+    #         return BookCategorySerializer(obj.category).data
+    #     return {}
+    #
+    # def get_genre(self, obj):
+    #     from apps.hidaya.serializers import GenreSerializer
+    #
+    #     if obj.genre is not None:
+    #         return GenreSerializer(obj.genre, many=True).data
+    #     return []
 
     # def to_representation(self, instance):
     #     representation = super().to_representation(instance)
