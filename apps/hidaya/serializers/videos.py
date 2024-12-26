@@ -18,4 +18,6 @@ class VideoSerializer(serializers.ModelSerializer):
             "tags",
             "category",
             "date",
+            "type",
+            "video_url",
         )
