@@ -27,7 +27,7 @@ class Video(AbstractBaseModel):
     )
     video_url = models.URLField(verbose_name=_("Video URL"), blank=True, null=True)
     original_file = models.FileField(
-        upload_to="videos/original", verbose_name=_("Original File")
+        upload_to="videos/original", verbose_name=_("Original File"), blank=True, null=True
     )
     view_count = models.BigIntegerField(
         default=0, verbose_name=_("View Count"), editable=False

@@ -39,7 +39,7 @@ class Book(AbstractBaseModel):
         "Genre", related_name="books", verbose_name=_("Genre")
     )
     is_active = models.BooleanField(default=True, verbose_name=_("Is Active"))
-    file = models.FileField(upload_to="books", verbose_name=_("File"))
+    file = models.FileField(upload_to="books", verbose_name=_("File"), blank=True, null=True)
     original_file = models.FileField(
         upload_to="books/original",
         verbose_name=_("Original File"),
