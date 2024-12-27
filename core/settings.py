@@ -131,3 +131,5 @@ RATE_LIMIT = os.getenv("RATE_LIMIT", 5)
 LOCALE_MIDDLEWARE_EXCLUDED_PATHS = ["/media/", "/static/", "/api/v1/"]
 
 X_FRAME_OPTIONS = "ALLOW-FROM *"  # noqa
+
+SITE_DOMAIN = os.getenv("SITE_DOMAIN", "https://hidoya.felixits.uz")
