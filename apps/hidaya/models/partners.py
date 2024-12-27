@@ -32,3 +32,18 @@ class Platform(AbstractBaseModel):
 
     def __str__(self):
         return self.title
+
+
+class Author(AbstractBaseModel):
+    name = models.CharField(max_length=255, db_index=True, verbose_name=_("Name"))
+    image = models.ImageField(upload_to="authors", verbose_name=_("Image"))
+    description = models.TextField(verbose_name=_("Description"))
+
+    class Meta:
+        verbose_name = _("Author")
+        verbose_name_plural = _("Authors")
+        db_table = "author"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return self.name

@@ -22,12 +22,13 @@ class Video(AbstractBaseModel):
     )
     is_active = models.BooleanField(default=True, verbose_name=_("Is Active"))
     date = models.DateField(verbose_name=_("Date"))
-    type = models.CharField(
-        max_length=10, choices=VideoType, default=VideoType.VIDEO
-    )
+    type = models.CharField(max_length=10, choices=VideoType, default=VideoType.VIDEO)
     iframe = models.TextField(verbose_name=_("Iframe"), blank=True, null=True)
     original_file = models.FileField(
-        upload_to="videos/original", verbose_name=_("Original File"), blank=True, null=True
+        upload_to="videos/original",
+        verbose_name=_("Original File"),
+        blank=True,
+        null=True,
     )
     view_count = models.BigIntegerField(
         default=0, verbose_name=_("View Count"), editable=False

@@ -18,6 +18,7 @@ class BookSerializer(serializers.ModelSerializer):
 
 class BookDetailSerializer(serializers.ModelSerializer):
     from apps.hidaya.serializers.genre import BookCategorySerializer, GenreSerializer
+
     category = BookCategorySerializer()
     genre = GenreSerializer(many=True)
 

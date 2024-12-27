@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.hidaya.models import Partner, Platform
+from apps.hidaya.models import Partner, Platform, Author
 
 
 class PartnerSerializer(serializers.ModelSerializer):
@@ -13,3 +13,9 @@ class PlatformSerializer(serializers.ModelSerializer):
     class Meta:
         model = Platform
         fields = ("id", "logo", "text", "image", "title", "description", "created_at")
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ("id", "name", "image", "description", "created_at")

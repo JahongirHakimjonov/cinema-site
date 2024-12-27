@@ -114,6 +114,14 @@ PAGES = [
                     request.user, "view_platform"
                 ),
             },
+            {
+                "title": _("Avtorlar"),
+                "icon": "diversity_3",
+                "link": reverse_lazy("admin:hidaya_author_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_author"
+                ),
+            },
         ],
     },
     {

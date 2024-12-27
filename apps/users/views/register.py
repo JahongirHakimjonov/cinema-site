@@ -90,14 +90,17 @@ class ConfirmView(APIView):
                                 status=status.HTTP_400_BAD_REQUEST,
                             )
                     token = user.tokens()
-                    return Response({
-                        "success": True,
-                        "message": _("User created."),
-                        "data": {
-                            "token": token["access"],
-                            "refresh": token["refresh"],
+                    return Response(
+                        {
+                            "success": True,
+                            "message": _("User created."),
+                            "data": {
+                                "token": token["access"],
+                                "refresh": token["refresh"],
+                            },
                         },
-                    }, status=status.HTTP_201_CREATED)
+                        status=status.HTTP_201_CREATED,
+                    )
             except SmsException as e:
                 return Response(
                     {"success": False, "message": str(e)},

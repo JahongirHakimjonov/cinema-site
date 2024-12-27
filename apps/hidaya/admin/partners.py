@@ -2,7 +2,7 @@ from django.contrib import admin
 from modeltranslation.admin import TabbedTranslationAdmin
 from unfold.admin import ModelAdmin
 
-from apps.hidaya.models import Partner, Platform
+from apps.hidaya.models import Partner, Platform, Author
 
 
 @admin.register(Partner)
@@ -17,4 +17,11 @@ class PartnerAdmin(ModelAdmin, TabbedTranslationAdmin):
 class PlatformAdmin(ModelAdmin, TabbedTranslationAdmin):
     list_display = ("id", "title", "description", "created_at")
     search_fields = ("title", "description")
+    readonly_fields = ("created_at", "updated_at")
+
+
+@admin.register(Author)
+class AuthorAdmin(ModelAdmin, TabbedTranslationAdmin):
+    list_display = ("id", "name", "description", "created_at")
+    search_fields = ("name", "description")
     readonly_fields = ("created_at", "updated_at")

@@ -16,7 +16,9 @@ from apps.hidaya.views import (
     VideoDetail,
     GetSignedVideoURLView,
     NotificationView,
-    PartnerList, PlatformList
+    PartnerList,
+    PlatformList,
+    AuthorList,
 )
 
 urlpatterns = [
@@ -32,6 +34,7 @@ urlpatterns = [
     path("info/<int:pk>/", InfoDetail.as_view(), name="info-detail"),
     path("partner/", PartnerList.as_view(), name="partner-list"),
     path("platform/", PlatformList.as_view(), name="platform-list"),
+    path("author/", AuthorList.as_view(), name="author-list"),
     path("category/book/", BookCategoryList.as_view(), name="category-book-list"),
     path("category/news/", NewsCategoryList.as_view(), name="category-news-list"),
     path("category/video/", VideoCategoryList.as_view(), name="category-video-list"),

@@ -21,7 +21,12 @@ class MeSerializer(serializers.ModelSerializer):
 
     def get_session_id(self, obj):
         request = self.context.get("request")
-        access_token = request.headers.get("Authorization").split(" ")[
-            1] if request and "Authorization" in request.headers else None
-        session = ActiveSessions.objects.filter(user=obj, is_active=True, access_token=access_token).first()
+        access_token = (
+            request.headers.get("Authorization").split(" ")[1]
+            if request and "Authorization" in request.headers
+            else None
+        )
+        session = ActiveSessions.objects.filter(
+            user=obj, is_active=True, access_token=access_token
+        ).first()
         return session.id if session else None

@@ -100,10 +100,10 @@ USE_I18N = True
 USE_TZ = True
 
 LANGUAGES = (
-    # ("tr", _("Turkish")),
-    # ("en", _("English")),
+    ("tr", _("Turkish")),
+    ("en", _("English")),
     ("uz", _("Uzbek")),
-    # ("ko", _("Krill")),
+    ("ko", _("Krill")),
 )
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
@@ -128,6 +128,6 @@ AUTH_USER_MODEL = "users.User"
 SIGNED_URL_EXPIRATION = os.getenv("SIGNED_URL_EXPIRATION", 60)
 RATE_LIMIT = os.getenv("RATE_LIMIT", 5)
 
-LOCALE_MIDDLEWARE_EXCLUDED_PATHS = ['/media/', '/static/']
+LOCALE_MIDDLEWARE_EXCLUDED_PATHS = ["/media/", "/static/", "/api/v1/"]
 
 X_FRAME_OPTIONS = "ALLOW-FROM *"  # noqa
