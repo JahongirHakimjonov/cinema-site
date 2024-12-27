@@ -18,7 +18,7 @@ from apps.hidaya.views import (
     NotificationView,
     PartnerList,
     PlatformList,
-    AuthorList,
+    AuthorList, QuestionList, TestResult,
 )
 
 urlpatterns = [
@@ -35,6 +35,8 @@ urlpatterns = [
     path("partner/", PartnerList.as_view(), name="partner-list"),
     path("platform/", PlatformList.as_view(), name="platform-list"),
     path("author/", AuthorList.as_view(), name="author-list"),
+    path("test/<int:pk>/<int:qty>/", QuestionList.as_view(), name="test-list"),
+    path("test/result/", TestResult.as_view(), name="test-result"),
     path("category/book/", BookCategoryList.as_view(), name="category-book-list"),
     path("category/news/", NewsCategoryList.as_view(), name="category-news-list"),
     path("category/video/", VideoCategoryList.as_view(), name="category-video-list"),

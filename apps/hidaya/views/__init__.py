@@ -8,3 +8,4 @@ from .partners import *  # noqa
 from .payme import *  # noqa
 from .url import *  # noqa
 from .videos import *  # noqa
+from .test import *  # noqa

@@ -122,6 +122,14 @@ PAGES = [
                     request.user, "view_author"
                 ),
             },
+            {
+                "title": _("Testlar"),
+                "icon": "rule",
+                "link": reverse_lazy("admin:hidaya_question_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_question"
+                ),
+            },
         ],
     },
     {
@@ -218,6 +226,22 @@ TABS = [
             {
                 "title": _("Yangilik kategoriyalari"),
                 "link": reverse_lazy("admin:hidaya_newscategory_changelist"),
+            },
+        ],
+    },
+    {
+        "models": [
+            "hidaya.question",
+            "hidaya.answer",
+        ],
+        "items": [
+            {
+                "title": _("Savollar"),
+                "link": reverse_lazy("admin:hidaya_question_changelist"),
+            },
+            {
+                "title": _("Javoblar"),
+                "link": reverse_lazy("admin:hidaya_answer_changelist"),
             },
         ],
     },
