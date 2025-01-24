@@ -1,11 +1,11 @@
 from django.contrib import admin
 from modeltranslation.admin import TabbedTranslationAdmin
 from unfold.admin import ModelAdmin, StackedInline
-
+from modeltranslation.admin import TranslationStackedInline
 from apps.hidaya.models import Question, Answer
 
 
-class AnswerInline(StackedInline):
+class AnswerInline(StackedInline, TranslationStackedInline):
     model = Answer
     extra = 1
     tab = True
