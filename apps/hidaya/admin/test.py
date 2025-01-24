@@ -9,7 +9,7 @@ class AnswerInline(StackedInline, TranslationStackedInline):
     model = Answer
     extra = 1
     tab = True
-    fields = ("answer_uz", "answer_tr", "answer_en", "answer_ko", "ball", "is_correct")
+    fields = ("answer", "ball", "is_correct")
 
 
 @admin.register(Question)
