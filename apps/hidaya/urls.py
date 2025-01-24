@@ -18,7 +18,9 @@ from apps.hidaya.views import (
     NotificationView,
     PartnerList,
     PlatformList,
-    AuthorList, QuestionList, TestResult,
+    AuthorList,
+    QuestionList,
+    TestResult,
 )
 
 urlpatterns = [

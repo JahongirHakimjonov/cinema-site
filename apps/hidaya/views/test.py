@@ -19,11 +19,7 @@ class QuestionList(APIView):
             questions = random.sample(questions, min(qty, len(questions)))
         serializer = self.serializer_class(questions, many=True)
         return Response(
-            {
-                "success": True,
-                "message": "Questions list",
-                "data": serializer.data
-            }
+            {"success": True, "message": "Questions list", "data": serializer.data}
         )
 
 
@@ -31,8 +27,8 @@ class TestResult(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        book = request.data.get('book')
-        results_data = request.data.get('results')
+        book = request.data.get("book")
+        results_data = request.data.get("results")
 
         correct_count = 0
         incorrect_count = 0
@@ -40,25 +36,17 @@ class TestResult(APIView):
         total_score = 0
 
         for result in results_data:
-            question_id = result.get('question_id')
-            answer_id = result.get('answer_id')
+            question_id = result.get("question_id")
+            answer_id = result.get("answer_id")
             try:
                 question = Question.objects.get(id=question_id)
             except Question.DoesNotExist:
-                return Response(
-                    {
-                        "success": False,
-                        "message": "Question not found"
-                    }
-                )
+                return Response({"success": False, "message": "Question not found"})
             try:
                 correct_answer = question.answers.get(is_correct=True)
             except question.answers.model.DoesNotExist:
                 return Response(
-                    {
-                        "success": False,
-                        "message": "Correct answer not found"
-                    }
+                    {"success": False, "message": "Correct answer not found"}
                 )
             if answer_id is None:
                 not_attempted_count += 1
@@ -77,7 +65,7 @@ class TestResult(APIView):
                     "correct_count": correct_count,
                     "incorrect_count": incorrect_count,
                     "not_attempted_count": not_attempted_count,
-                    "total_score": total_score
-                }
+                    "total_score": total_score,
+                },
             }
         )

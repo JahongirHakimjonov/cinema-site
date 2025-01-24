@@ -8,7 +8,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ("id", "title", "author", "banner", "category")
+        fields = ("id", "title", "author", "banner", "category", "buy_link")
 
     def get_category(self, obj):
         from apps.hidaya.serializers import BookCategorySerializer
@@ -31,6 +31,7 @@ class BookDetailSerializer(serializers.ModelSerializer):
             "description",
             "author",
             "banner",
+            "buy_link",
             "pages",
             "date",
             "price",

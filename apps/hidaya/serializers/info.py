@@ -16,12 +16,12 @@ class InfoSerializer(serializers.ModelSerializer):
 
     def get_description(self, obj):
         base_url = settings.SITE_DOMAIN
-        soup = BeautifulSoup(obj.description, 'html.parser')
+        soup = BeautifulSoup(obj.description, "html.parser")
 
-        for img in soup.find_all('img', src=True):
-            img['src'] = urljoin(base_url, img['src'])
+        for img in soup.find_all("img", src=True):
+            img["src"] = urljoin(base_url, img["src"])
 
-        for a in soup.find_all('a', href=True):
-            a['href'] = urljoin(base_url, a['href'])
+        for a in soup.find_all("a", href=True):
+            a["href"] = urljoin(base_url, a["href"])
 
         return str(soup)

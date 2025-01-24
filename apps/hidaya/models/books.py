@@ -18,6 +18,9 @@ class Book(AbstractBaseModel):
     banner = models.ImageField(upload_to="books", verbose_name=_("Banner"))
     pages = models.BigIntegerField(verbose_name=_("Pages"))
     date = models.DateField(verbose_name=_("Date"))
+    buy_link = models.CharField(
+        max_length=255, db_index=True, verbose_name=_("Buy Link"), blank=True, null=True
+    )
     price = models.DecimalField(
         max_digits=100, decimal_places=2, verbose_name=_("Price")
     )
