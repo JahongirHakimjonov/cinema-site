@@ -130,6 +130,14 @@ PAGES = [
                     request.user, "view_question"
                 ),
             },
+            {
+                "title": _("Banner"),
+                "icon": "perm_media",
+                "link": reverse_lazy("admin:hidaya_latestnews_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_latestnews"
+                ),
+            },
         ],
     },
     {
