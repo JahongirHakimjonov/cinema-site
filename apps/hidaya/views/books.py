@@ -46,7 +46,7 @@ class BookList(APIView):
                 query &= (
                     Q(title__icontains=term)
                     | Q(title_uz__icontains=term)
-                    | Q(title_ru__icontains=term)
+                    | Q(title_tr__icontains=term)
                     | Q(title_en__icontains=term)
                     | Q(title_ko__icontains=term)
                     | Q(sub_title__icontains=term)
