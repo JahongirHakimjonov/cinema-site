@@ -21,6 +21,9 @@ class News(AbstractBaseModel):
         related_name="news",
         verbose_name=_("Category"),
     )
+    link = models.CharField(
+        max_length=255, verbose_name=_("Link"), blank=True, null=True
+    )
     is_active = models.BooleanField(default=True, verbose_name=_("Is Active"))
     view_count = models.BigIntegerField(default=0, verbose_name=_("View Count"))
 
