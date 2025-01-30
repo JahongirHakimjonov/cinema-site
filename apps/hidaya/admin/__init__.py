@@ -8,3 +8,4 @@ from .order import *  # noqa
 from .partners import *  # noqa
 from .test import *  # noqa
 from .videos import *  # noqa
+from .switcher import *  # noqa

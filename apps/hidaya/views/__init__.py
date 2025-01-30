@@ -10,3 +10,4 @@ from .payme import *  # noqa
 from .test import *  # noqa
 from .url import *  # noqa
 from .videos import *  # noqa
+from .switcher import *  # noqa

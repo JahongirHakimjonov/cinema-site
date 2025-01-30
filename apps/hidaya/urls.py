@@ -21,7 +21,7 @@ from apps.hidaya.views import (
     AuthorList,
     QuestionList,
     TestResult,
-    LatestNewsView,
+    LatestNewsView, SwitcherAPIView,
 )
 
 urlpatterns = [
@@ -44,6 +44,7 @@ urlpatterns = [
     path("category/news/", NewsCategoryList.as_view(), name="category-news-list"),
     path("category/video/", VideoCategoryList.as_view(), name="category-video-list"),
     path("banner/", LatestNewsView.as_view(), name="banner-list"),
+    path("switcher/", SwitcherAPIView.as_view(), name="switcher"),
     path("notifications/", NotificationView.as_view(), name="notifications"),
     path(
         "videos/<int:video_id>/<str:quality>/<str:file_name>/signed-url/",
